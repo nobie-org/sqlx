@@ -18,7 +18,6 @@ members = [
     "examples/postgres/todos",
     "examples/postgres/mockable-todos",
     "examples/postgres/transaction",
-    "examples/sqlite/todos",
 ]
 
 [workspace.package]
@@ -26,7 +25,7 @@ version = "0.7.3"
 license = "MIT OR Apache-2.0"
 edition = "2021"
 repository = "https://github.com/launchbadge/sqlx"
-keywords = ["database", "async", "postgres", "mysql", "sqlite"]
+keywords = ["database", "async", "postgres", "mysql"]
 categories = ["database", "asynchronous"]
 authors = [
     "Ryan Leckey <leckey.ryan@gmail.com>",
@@ -56,7 +55,7 @@ macros = ["sqlx-macros"]
 migrate = ["sqlx-core/migrate", "sqlx-macros?/migrate", "sqlx-mysql?/migrate", "sqlx-postgres?/migrate"]
 
 # intended mainly for CI and docs
-all-databases = ["mysql", "sqlite", "postgres", "any"]
+all-databases = ["mysql","postgres", "any"]
 _unstable-all-types = [
     "bigdecimal",
     "rust_decimal",
@@ -195,66 +194,6 @@ required-features = ["any"]
 name = "migrate-macro"
 path = "tests/migrate/macro.rs"
 required-features = ["macros", "migrate"]
-
-#
-# SQLite
-#
-
-[[test]]
-name = "sqlite"
-path = "tests/sqlite/sqlite.rs"
-required-features = ["sqlite"]
-
-[[test]]
-name = "sqlite-any"
-path = "tests/sqlite/any.rs"
-required-features = ["sqlite"]
-
-[[test]]
-name = "sqlite-types"
-path = "tests/sqlite/types.rs"
-required-features = ["sqlite"]
-
-[[test]]
-name = "sqlite-describe"
-path = "tests/sqlite/describe.rs"
-required-features = ["sqlite"]
-
-[[test]]
-name = "sqlite-macros"
-path = "tests/sqlite/macros.rs"
-required-features = ["sqlite", "macros"]
-
-[[test]]
-name = "sqlite-derives"
-path = "tests/sqlite/derives.rs"
-required-features = ["sqlite", "macros"]
-
-[[test]]
-name = "sqlite-error"
-path = "tests/sqlite/error.rs"
-required-features = ["sqlite"]
-
-[[test]]
-name = "sqlite-sqlcipher"
-path = "tests/sqlite/sqlcipher.rs"
-required-features = ["sqlite"]
-
-[[test]]
-name = "sqlite-test-attr"
-path = "tests/sqlite/test-attr.rs"
-required-features = ["sqlite", "macros", "migrate"]
-
-[[test]]
-name = "sqlite-migrate"
-path = "tests/sqlite/migrate.rs"
-required-features = ["sqlite", "macros", "migrate"]
-
-[[bench]]
-name = "sqlite-describe"
-path = "benches/sqlite/describe.rs"
-harness = false
-required-features = ["sqlite"]
 
 #
 # MySQL

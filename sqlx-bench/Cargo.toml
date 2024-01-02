@@ -23,7 +23,6 @@ runtime-tokio-rustls = [
 ]
 
 postgres = ["sqlx/postgres"]
-sqlite = ["sqlx/sqlite"]
 
 [dependencies]
 criterion = "0.3.3"
@@ -38,7 +37,3 @@ name = "pg_pool"
 harness = false
 required-features = ["postgres"]
 
-[[bench]]
-name = "sqlite_fetch_all"
-harness = false
-required-features = ["sqlite"]
