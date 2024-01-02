@@ -9,7 +9,6 @@ members = [
 #    "sqlx-bench",
     "sqlx-mysql",
     "sqlx-postgres",
-    "sqlx-sqlite",
     "examples/mysql/todos",
     "examples/postgres/axum-social-with-tests",
     "examples/postgres/chat",
@@ -54,7 +53,7 @@ rustdoc-args = ["--cfg", "docsrs"]
 [features]
 default = ["any", "macros", "migrate", "json"]
 macros = ["sqlx-macros"]
-migrate = ["sqlx-core/migrate", "sqlx-macros?/migrate", "sqlx-mysql?/migrate", "sqlx-postgres?/migrate", "sqlx-sqlite?/migrate"]
+migrate = ["sqlx-core/migrate", "sqlx-macros?/migrate", "sqlx-mysql?/migrate", "sqlx-postgres?/migrate"]
 
 # intended mainly for CI and docs
 all-databases = ["mysql", "sqlite", "postgres", "any"]
@@ -94,23 +93,21 @@ _rt-async-std = []
 _rt-tokio = []
 
 # database
-any = ["sqlx-core/any", "sqlx-mysql?/any", "sqlx-postgres?/any", "sqlx-sqlite?/any"]
+any = ["sqlx-core/any", "sqlx-mysql?/any", "sqlx-postgres?/any"]
 postgres = ["sqlx-postgres", "sqlx-macros?/postgres"]
 mysql = ["sqlx-mysql", "sqlx-macros?/mysql"]
-sqlite = ["sqlx-sqlite", "sqlx-macros?/sqlite"]
 
 # types
-json = ["sqlx-macros?/json", "sqlx-mysql?/json", "sqlx-postgres?/json", "sqlx-sqlite?/json"]
+json = ["sqlx-macros?/json", "sqlx-mysql?/json", "sqlx-postgres?/json"]
 
 bigdecimal = ["sqlx-core/bigdecimal", "sqlx-macros?/bigdecimal", "sqlx-mysql?/bigdecimal", "sqlx-postgres?/bigdecimal"]
 bit-vec = ["sqlx-core/bit-vec", "sqlx-macros?/bit-vec", "sqlx-postgres?/bit-vec"]
-chrono = ["sqlx-core/chrono", "sqlx-macros?/chrono", "sqlx-mysql?/chrono", "sqlx-postgres?/chrono", "sqlx-sqlite?/chrono"]
+chrono = ["sqlx-core/chrono", "sqlx-macros?/chrono", "sqlx-mysql?/chrono", "sqlx-postgres?/chrono"]
 ipnetwork = ["sqlx-core/ipnetwork", "sqlx-macros?/ipnetwork", "sqlx-postgres?/ipnetwork"]
 mac_address = ["sqlx-core/mac_address", "sqlx-macros?/mac_address", "sqlx-postgres?/mac_address"]
 rust_decimal = ["sqlx-core/rust_decimal", "sqlx-macros?/rust_decimal", "sqlx-mysql?/rust_decimal", "sqlx-postgres?/rust_decimal"]
-time = ["sqlx-core/time", "sqlx-macros?/time", "sqlx-mysql?/time", "sqlx-postgres?/time", "sqlx-sqlite?/time"]
-uuid = ["sqlx-core/uuid", "sqlx-macros?/uuid", "sqlx-mysql?/uuid", "sqlx-postgres?/uuid", "sqlx-sqlite?/uuid"]
-regexp = ["sqlx-sqlite?/regexp"]
+time = ["sqlx-core/time", "sqlx-macros?/time", "sqlx-mysql?/time", "sqlx-postgres?/time"]
+uuid = ["sqlx-core/uuid", "sqlx-macros?/uuid", "sqlx-mysql?/uuid", "sqlx-postgres?/uuid"]
 
 [workspace.dependencies]
 # Core Crates
@@ -121,7 +118,6 @@ sqlx-macros = { version = "=0.7.3", path = "sqlx-macros" }
 # Driver crates
 sqlx-mysql = { version = "=0.7.3", path = "sqlx-mysql" }
 sqlx-postgres = { version = "=0.7.3", path = "sqlx-postgres" }
-sqlx-sqlite = { version = "=0.7.3", path = "sqlx-sqlite" }
 
 # Facade crate (for reference from sqlx-cli)
 sqlx = { version = "=0.7.3", path = ".", default-features = false }
@@ -155,7 +151,6 @@ sqlx-macros = { workspace = true, optional = true }
 
 sqlx-mysql = { workspace = true, optional = true }
 sqlx-postgres = { workspace = true, optional = true }
-sqlx-sqlite = { workspace = true, optional = true }
 
 [dev-dependencies]
 anyhow = "1.0.52"
@@ -177,8 +172,6 @@ hex = "0.4.3"
 tempdir = "0.3.7"
 criterion = {version = "0.4", features = ["async_tokio"]}
 
-# Needed to test SQLCipher
-libsqlite3-sys = { version = "0.27", features = ["bundled-sqlcipher"] }
 
 #
 # Any
